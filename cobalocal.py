@@ -1,6 +1,8 @@
 import os
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+import gc_homeland_v9
+from gc_homeland_v9 import read_preprocessing, ocr_phase
 # from flask_ngrok import run_with_ngrok
 
 UPLOAD_FOLDER = './upload'
@@ -14,14 +16,14 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def ocr_for_pdf(filename_for_pdf):
-  # get_pre_img = read_preprocessing(filename_for_pdf)
-  # get_OCR_json = ocr_phase(get_pre_img)
+  get_pre_img = read_preprocessing(filename_for_pdf)
+  get_OCR_json = ocr_phase(get_pre_img)
 
-  dict_sampe = {
-    "file_output": filename_for_pdf,
-  }
+  # dict_sampe = {
+  #   "file_output": filename_for_pdf,
+  # }
   
-  return dict_sampe
+  return get_OCR_json
 
 
 
