@@ -1,5 +1,6 @@
 import os
-from flask import Flask, flash, request, redirect, url_for
+import json
+from flask import Flask, flash, request, redirect, url_for, jsonify
 from werkzeug.utils import secure_filename
 import gc_homeland_v9
 from gc_homeland_v9 import read_preprocessing, ocr_phase
@@ -10,6 +11,7 @@ ALLOWED_EXTENSIONS = set(['pdf','PDF'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -24,7 +26,6 @@ def ocr_for_pdf(filename_for_pdf):
   # }
   
   return get_OCR_json
-
 
 
 @app.route('/api/filepdf', methods=['POST'])
@@ -60,6 +61,6 @@ def upload_file():
 
           print("Request ke 3 aman")
           
-          return do_ocr_things
+          return jsonify(do_ocr_things)
       return "Request ocr lancar"
 app.run()
