@@ -1,7 +1,7 @@
 import os
 import json
-from flask import Flask, flash, request, redirect, url_for, jsonify
-from werkzeug.utils import secure_filename
+from flask import Flask, flash, request, redirect, url_for, jsonify, render_template, Response
+from werkzeug.utils import secure_filename, send_from_directory
 import gc_homeland_v9
 from gc_homeland_v9 import read_preprocessing, ocr_phase
 # from flask_ngrok import run_with_ngrok
@@ -26,6 +26,11 @@ def ocr_for_pdf(filename_for_pdf):
   # }
   
   return get_OCR_json
+
+# Bagian GET
+@app.route('/', methods=['GET'])
+def ocr_index():
+  return render_template('ocr.html')
 
 
 @app.route('/api/filepdf', methods=['POST'])
@@ -60,7 +65,14 @@ def upload_file():
           do_ocr_things = ocr_for_pdf(file_path)
 
           print("Request ke 3 aman")
-          
-          return jsonify(do_ocr_things)
+          respon = str(do_ocr_things)
+          res = Response(respon, mimetype='application/json')
+          res.headers["Content-Disposition"] = "attachment;filename=hehe.json"
+          return res
+
       return "Request ocr lancar"
+
+
+
+
 app.run()

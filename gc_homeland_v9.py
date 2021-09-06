@@ -71,8 +71,8 @@ def read_preprocessing(filename_pdf):
 
   # Plotting the images
   result_img = [img, th1]
-  titles = ['Original Image', 'Thresh Binary']
-  plot_img(result_img, titles)
+  # titles = ['Original Image', 'Thresh Binary']
+  # plot_img(result_img, titles)
 
   return th1
 
