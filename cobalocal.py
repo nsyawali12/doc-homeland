@@ -73,6 +73,4 @@ def upload_file():
       return "Request ocr lancar"
 
 
-
-
 app.run()
