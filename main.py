@@ -29,15 +29,15 @@ def ocr_for_pdf_json(filename_for_pdf):
   
   return get_OCR_json
 
-def ocr_for_pdf_tuple(filename_for_pdf):
-  get_pre_img_tuple = read_preprocessing(filename_for_pdf)
-  get_OCR_tuple = ocr_tuple_phase(get_pre_img_tuple)
+# def ocr_for_pdf_tuple(filename_for_pdf):
+#   get_pre_img_tuple = read_preprocessing(filename_for_pdf)
+#   get_OCR_tuple = ocr_tuple_phase(get_pre_img_tuple)
 
-  # dict_sampe = {
-  #   "file_output": filename_for_pdf,
-  # }
+#   # dict_sampe = {
+#   #   "file_output": filename_for_pdf,
+#   # }
   
-  return get_OCR_tuple
+#   return get_OCR_tuple
 
 # Bagian GET
 @app.route('/', methods=['GET'])
@@ -77,7 +77,7 @@ def upload_file():
           res_ocr = []
         
           do_ocr_json = ocr_for_pdf_json(file_path)
-          do_ocr_tuple = ocr_for_pdf_tuple(file_path)
+          # do_ocr_tuple = ocr_for_pdf_tuple(file_path)
 
           print("Request ke 3 aman")
           
@@ -85,15 +85,15 @@ def upload_file():
           res_json = Response(respon_json, mimetype='application/json')
           res_json.headers["Content-Disposition"] = "attachment;filename=ocr_json.json"
 
-          res_ocr.append(res_json)
+          # res_ocr.append(res_json)
 
           print("request ocr json aman ")
 
-          respon = str(do_ocr_tuple)
-          res = Response(respon, mimetype='application/json')
-          res.headers["Content-Disposition"] = "attachment;filename=ocr_tuple.json"
+          # respon = str(do_ocr_tuple)
+          # res = Response(respon, mimetype='application/json')
+          # res.headers["Content-Disposition"] = "attachment;filename=ocr_tuple.json"
 
-          print("request ocr tuple aman ")
+          # print("request ocr tuple aman ")
 
           return res_json
 

@@ -101,25 +101,17 @@ def ocr_json_phase(pre_img):
   draw_boxes(pre_copy, bounds, color='red')
 
   text=''
+  result_text = []
+ 
   for i in range(len(bounds)):
-    text = text + bounds[i][1] + '\n'
+    # text = text + bounds[i][1] + '\n'
+    text = text + bounds[i][1]
+    result_text.append(text)
+    
   
   ### Result OCR 
   result_json = {
-    "id_dokumen": bounds[0][1],
-    "nomer_daftar_isian": bounds[1][1],
-    "badan_pemilik": bounds[2][1],
-    "negara": bounds[3][1],
-    "kategori_dokumen": bounds[5][1],
-    "judul": bounds[6][1],      
-    "nomer_isi": bounds[8][1],
-    "provinsi": bounds[10][1],
-    "kabupaten_or_kota": bounds[13][1],
-    "kecamatan": bounds[15][1],
-    "desa_or_kelurahan": bounds[17][1],
-    "daftar_isian_307": None, 
-    "daftar_isian_208": None,
-    "cabang_kantor_pertanahan": bounds[26][1]
+    "semua_text_ocr": result_text
   }
 
   return result_json
