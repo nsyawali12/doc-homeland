@@ -105,7 +105,7 @@ def ocr_json_phase(pre_img):
  
   for i in range(len(bounds)):
     # text = text + bounds[i][1] + '\n'
-    text = text + bounds[i][1]
+    text = bounds[i][1]
     result_text.append(text)
     
   
